@@ -72,7 +72,8 @@ SET driveletter=%1
 rem Create an emtpy file
 type nul >> %driveletter%:\emptyfile
 
-"timestomp.py" %driveletter%:\emptyfile "-c" "2000-01-01"
+echo "executing timestomp"
+"timestomp.py" %driveletter%:\emptyfile "-cp" "2000-01-01"
 
 rem Create a directory
 mkdir %driveletter%:\testdir1
