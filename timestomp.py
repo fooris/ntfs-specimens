@@ -125,9 +125,9 @@ def main():
       access_time = wt.get_access_time(path)
       modification_time = wt.get_modification_time(path)
       creation_time = wt.get_creation_time(path)
-      print("access_time:       {}".format(access_time))
-      print("modification_time: {}".format(modification_time))
-      print("birth_time:        {}".format(creation_time))
+      print("access_time:       {}".format(ticks_to_datetime(access_time)))
+      print("modification_time: {}".format(ticks_to_datetime(modification_time)))
+      print("birth_time:        {}".format(ticks_to_datetime(creation_time)))
 
       if len(commands) == 1:
         return
@@ -146,6 +146,14 @@ def main():
       elif c == 'b':
         wt.set_creation_time(path, date)
 
+    if 'p' in commands:
+      print("times for {} changed to: ".format(path))
+      access_time = wt.get_access_time(path)
+      modification_time = wt.get_modification_time(path)
+      creation_time = wt.get_creation_time(path)
+      print("access_time:       {}".format(ticks_to_datetime(access_time)))
+      print("modification_time: {}".format(ticks_to_datetime(modification_time)))
+      print("birth_time:        {}".format(ticks_to_datetime(creation_time)))
 
 
 if __name__ == "__main__":
