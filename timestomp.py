@@ -116,12 +116,12 @@ def main():
 
     print("DEBUG: made it here")
 
-    commands = argv[2].split("")[1:]
+    commands = list(argv[2])[1:]
     for c in commands:
-      if not c in ["p","m","a","c","b"]:
+      if not c in ['p','m','a','c','b']:
         usage()
 
-    if "p" in commands:
+    if 'p' in commands:
       access_time = wt.get_access_time()
       modification_time = wt.get_modification_time()
       creation_time = wt.get_creation_time()
@@ -137,13 +137,13 @@ def main():
       usage()
 
     for c in commands:
-      if c == "m":
+      if c == 'm':
         wt.set_modification_time(path, date)
-      elif c == "a":
+      elif c == 'a':
         wt.set_access_time(path, date)
-      elif c == "c":
+      elif c == 'c':
         print("c (MFT change) not implemented yet")
-      elif c == "b":
+      elif c == 'b':
         wt.set_creation_time(path, date)
 
 
