@@ -132,7 +132,7 @@ def main():
       if len(commands) == 1:
         return
 
-    date = datetime.strptime(argv[3], '%Y/%m/%d %H:%M:%S %z')
+    date = datetime.datetime.strptime(argv[3], '%Y/%m/%d %H:%M:%S %z')
     if not date:
       usage()
 
