@@ -117,8 +117,6 @@ def main():
     if not argv[2].startswith("-"):
       usage()
 
-    print("DEBUG: made it here")
-
     commands = list(argv[2])[1:]
     for c in commands:
       if not c in ['p','m','a','c','b']:
@@ -138,6 +136,9 @@ def main():
     date = datetime.datetime.strptime(argv[3], '%Y-%m-%d') #  %H:%M:%S %z')
     if not date:
       usage()
+
+    print(date)
+    print(datetime_to_ticks(date))
 
     for c in commands:
       if c == 'm':
