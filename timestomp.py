@@ -135,7 +135,7 @@ def main():
       if not date
         usage()
 
-      for c in range commands:
+      for c in commands:
         if c == "m":
           wt.set_modification_time(path, date)
         elif c == "a":
