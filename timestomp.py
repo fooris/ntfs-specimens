@@ -141,22 +141,22 @@ def main():
 
     for c in commands:
       if c == 'm':
-        wt.set_modification_time(path, date)
+        wt.set_modification_time(path, datetime_to_ticks(date))
       elif c == 'a':
-        wt.set_access_time(path, date)
+        wt.set_access_time(path, datetime_to_ticks(date))
       elif c == 'c':
         print("c (MFT change) not implemented yet")
       elif c == 'b':
-        wt.set_creation_time(path, date)
+        wt.set_creation_time(path, datetime_to_ticks(date))
 
     if 'p' in commands:
       print("times for {} changed to: ".format(path))
       access_time = wt.get_access_time(path)
       modification_time = wt.get_modification_time(path)
       creation_time = wt.get_creation_time(path)
-      print("access_time:       {}".format(ticks_to_datetime(datetime_to_ticks(access_time))))
-      print("modification_time: {}".format(ticks_to_datetime(datetime_to_ticks(modification_time))))
-      print("birth_time:        {}".format(ticks_to_datetime(datetime_to_ticks(creation_time))))
+      print("access_time:       {}".format(ticks_to_datetime(access_time)))
+      print("modification_time: {}".format(ticks_to_datetime(modification_time)))
+      print("birth_time:        {}".format(ticks_to_datetime(creation_time)))
 
 
 if __name__ == "__main__":
