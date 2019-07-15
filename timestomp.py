@@ -122,9 +122,9 @@ def main():
         usage()
 
     if 'p' in commands:
-      access_time = wt.get_access_time()
-      modification_time = wt.get_modification_time()
-      creation_time = wt.get_creation_time()
+      access_time = wt.get_access_time(path)
+      modification_time = wt.get_modification_time(path)
+      creation_time = wt.get_creation_time(path)
       print("access_time:       {}".format(access_time))
       print("modification_time: {}".format(modification_time))
       print("birth_time:        {}".format(creation_time))
