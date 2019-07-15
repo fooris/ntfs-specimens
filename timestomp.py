@@ -102,54 +102,50 @@ def usage():
   sys.exit(1)
 
 def main():
-  try:
-    with WindowsTimestampAccessor() as wt:
-      argv = sys.argv
-      if len(argv) != 4:
+  with WindowsTimestampAccessor() as wt:
+    argv = sys.argv
+    if len(argv) != 4:
+      usage()
+
+    path = argv[1]
+    if not os.path.isfile(path):
+      usage()
+
+    if not argv[2].startswith("-"):
+      usage()
+
+    print("DEBUG: made it here")
+
+    commands = argv[2].split("")[1:]
+    for c in commands:
+      if not c in ["p","m","a","c","b"]:
         usage()
 
-      path = argv[1]
-      if not os.path.isfile(path):
-        usage()
+    if "p" in commands:
+      access_time = wt.get_access_time()
+      modification_time = wt.get_modification_time()
+      creation_time = wt.get_creation_time()
+      print("access_time:       {}".format(access_time))
+      print("modification_time: {}".format(modification_time))
+      print("birth_time:        {}".format(creation_time))
 
-      if not argv[2].startswith("-"):
-        usage()
+      if len(commands) == 1:
+        return
 
-      print("DEBUG: made it here")
+    date = datetime.strptime(argv[3], '%Y/%m/%d %H:%M:%S %z')
+    if not date:
+      usage()
 
-      commands = argv[2].split("")[1:]
-      for c in commands:
-        if not c in ["p","m","a","c","b"]:
-          usage()
+    for c in commands:
+      if c == "m":
+        wt.set_modification_time(path, date)
+      elif c == "a":
+        wt.set_access_time(path, date)
+      elif c == "c":
+        print("c (MFT change) not implemented yet")
+      elif c == "b":
+        wt.set_creation_time(path, date)
 
-      if "p" in commands:
-        access_time = wt.get_access_time()
-        modification_time = wt.get_modification_time()
-        creation_time = wt.get_creation_time()
-        print("access_time:       {}".format(access_time))
-        print("modification_time: {}".format(modification_time))
-        print("birth_time:        {}".format(creation_time))
-
-        if len(commands) == 1:
-          return
-
-      date = datetime.strptime(argv[3], '%Y/%m/%d %H:%M:%S %z')
-      if not date:
-        usage()
-
-      for c in commands:
-        if c == "m":
-          wt.set_modification_time(path, date)
-        elif c == "a":
-          wt.set_access_time(path, date)
-        elif c == "c":
-          print("c (MFT change) not implemented yet")
-        elif c == "b":
-          wt.set_creation_time(path, date)
-
-  except:
-    print("exception raised")
-    usage()
 
 
 if __name__ == "__main__":
