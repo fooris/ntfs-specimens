@@ -115,6 +115,8 @@ def main():
       if not argv[2].startswith("-"):
         usage()
 
+      print("DEBUG: made it here")
+
       commands = argv[2].split("")[1:]
       for c in commands:
         if not c in ["p","m","a","c","b"]:
@@ -132,7 +134,7 @@ def main():
           return
 
       date = datetime.strptime(argv[3], '%Y/%m/%d %H:%M:%S %z')
-      if not date
+      if not date:
         usage()
 
       for c in commands:
