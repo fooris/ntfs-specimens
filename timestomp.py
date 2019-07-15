@@ -79,7 +79,7 @@ class WindowsTimestampAccessor(object):
     self.query.flush()
     line = self.response.readline().decode("UTF-8").rstrip("\r\n")
     if line != "ok":
-      raise Exception("Invalid data")
+      raise Exception("Invalid data" + line)
 
 
 # Takes an int. The returned datetime object will be naive, i.e. tzinfo=None.
