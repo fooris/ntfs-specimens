@@ -104,7 +104,7 @@ def usage():
 def main():
   with WindowsTimestampAccessor() as wt:
     argv = sys.argv
-    if len(argv) != 4:
+    if len(argv) < 3:
       usage()
 
     path = argv[1]
