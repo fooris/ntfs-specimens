@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+
 #
 # Windows timestamp accessor (Python)
 # For Python 2 and 3.3+
