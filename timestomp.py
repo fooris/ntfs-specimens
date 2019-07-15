@@ -116,7 +116,7 @@ def main():
         usage()
 
       commands = argv[2].split("")[1:]
-      for c in range commands:
+      for c in commands:
         if not c in ["p","m","a","c","b"]:
           usage()
 
